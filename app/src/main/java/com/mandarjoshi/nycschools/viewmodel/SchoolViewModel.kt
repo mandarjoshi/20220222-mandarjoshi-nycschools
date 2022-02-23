@@ -3,7 +3,6 @@ package com.mandarjoshi.nycschools.viewmodel
 import com.mandarjoshi.nycschools.model.SchoolScore
 import com.mandarjoshi.nycschools.model.SchoolDetails
 
-import android.text.TextUtils
 import androidx.lifecycle.*
 import com.mandarjoshi.nycschools.repo.SchoolRepository
 
@@ -34,9 +33,9 @@ class SchoolViewModel(private val schoolRepository: SchoolRepository) : ViewMode
     }
 
     fun isReadingBestScore(schoolScore: SchoolScore?): Boolean {
-        if (schoolScore != null) {
-            if (TextUtils.isDigitsOnly(schoolScore.avgScoreReading)) {
-                return schoolScore.avgScoreReading.toInt() > BEST_READING_SCORE
+        if (isNumber(schoolScore?.avgScoreReading)) {
+            schoolScore?.avgScoreReading?.let {
+                return it.toInt() > BEST_READING_SCORE
             }
         }
         return false
@@ -57,5 +56,9 @@ class SchoolViewModel(private val schoolRepository: SchoolRepository) : ViewMode
             map[score.databaseNumber] = score
         }
         return map
+    }
+
+    private fun isNumber(s: String?): Boolean {
+        return if (s.isNullOrEmpty()) false else s.all { Character.isDigit(it) }
     }
 }

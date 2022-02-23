@@ -8,4 +8,10 @@
     <string name="label_math">Math</string>
     <string name="label_writing">Writing</string>
     <string name="label_retry">Retry</string>
+
+    <string name="error_title">Error</string>
+    <string name="error_desc">"Couldn\'t complete request. try again later."</string>
+    <string name="error_no_data">"No data found."</string>
+    <string name="button_ok">Ok</string>
+
 </resources>

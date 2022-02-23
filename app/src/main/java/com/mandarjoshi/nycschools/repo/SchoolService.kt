@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import com.mandarjoshi.nycschools.model.SchoolScore
 import retrofit2.Call
 
-
 interface SchoolService {
     @GET("resource/f9bf-2cp4.json")
     suspend fun getSchoolScores(): List<SchoolScore>?

@@ -1,10 +1,7 @@
 package com.mandarjoshi.nycschools
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -23,15 +20,5 @@ class MainActivity : AppCompatActivity() {
             findViewById<MaterialToolbar>(R.id.toolbar)
                 .setupWithNavController(navController, appBarConfiguration)
         }
-    }
-
-    override fun onCreateView(
-        parent: View?,
-        name: String,
-        context: Context,
-        attrs: AttributeSet
-    ): View? {
-
-        return super.onCreateView(parent, name, context, attrs)
     }
 }

@@ -42,7 +42,8 @@ buildscript {
             ],
             junit: [
                     'junit': "junit:junit:${versions.junit}",
-                    'mockito_kotlin': "com.nhaarman:mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
+                    'mockito_kotlin': "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}",
+
             ],
             kotlin: [
                     'coroutines': "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinCoroutines}"
