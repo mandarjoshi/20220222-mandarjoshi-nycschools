@@ -12,7 +12,9 @@ buildscript {
             'navigation': '2.4.0',
             'androidx': '1.1.0',
             'junit': '1.14',
-            'mockito_kotlin': '2.0.0'
+            'mockito_kotlin': '2.0.0',
+            'kotlinCoroutines': '1.5.2',
+            'lifecycleLivedata': '2.2.0'
     ]
     ext.deps = [
             squareup: [
@@ -34,12 +36,16 @@ buildscript {
             ],
             androidx: [
                     'lifecycleextensions': "android.arch.lifecycle:extensions:${versions.androidx}",
-                    'lifecycleviewmodel' : "android.arch.lifecycle:viewmodel:${versions.androidx}"
+                    'lifecycleviewmodel' : "android.arch.lifecycle:viewmodel:${versions.androidx}",
+                    'lifecyclelivedata': "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleLivedata}"
 
             ],
             junit: [
                     'junit': "junit:junit:${versions.junit}",
                     'mockito_kotlin': "com.nhaarman:mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
+            ],
+            kotlin: [
+                    'coroutines': "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinCoroutines}"
             ]
     ]
     dependencies {

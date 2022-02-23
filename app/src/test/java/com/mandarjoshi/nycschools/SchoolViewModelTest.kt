@@ -15,7 +15,6 @@ import org.junit.Test
 
 
 class SchoolViewModelTest {
-
     /*
     val schoolRepository: SchoolRepository = mock()
     private val viewModel: SchoolViewModel = SchoolViewModel(schoolRepository)
@@ -63,6 +62,5 @@ class SchoolViewModelTest {
     private fun getSchoolScore() = SchoolScore("databaseNumber",
         "schoolName", "5", "100",
         "100", "100")
-
-     */
+*/
 }

@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/school_scores_school_name"
             android:layout_marginHorizontal="@dimen/text_margin"
-            android:layout_marginTop="@dimen/xlarge_margin"
+            android:layout_marginTop="@dimen/large_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Title"

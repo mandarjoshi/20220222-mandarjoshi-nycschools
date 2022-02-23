@@ -63,6 +63,8 @@ dependencies {
     api deps.navigation.ui
     api deps.androidx.lifecycleextensions
     api deps.androidx.lifecycleviewmodel
+    api deps.androidx.lifecyclelivedata
+    api deps.kotlin.coroutines
 
     annotationProcessor deps.di.daggerCompiler
     kapt deps.di.daggerCompiler

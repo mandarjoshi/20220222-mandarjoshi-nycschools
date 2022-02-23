@@ -19,7 +19,8 @@ import javax.inject.Inject
 import com.mandarjoshi.nycschools.NycSchoolApplication
 import com.mandarjoshi.nycschools.model.SchoolDetails
 
-import androidx.lifecycle.LiveData
+import com.mandarjoshi.nycschools.util.Resource
+import com.mandarjoshi.nycschools.util.Status
 
 class SchoolFragment : BaseFragment() {
 
@@ -42,18 +43,7 @@ class SchoolFragment : BaseFragment() {
         binding = FragmentSchoolListBinding.inflate(inflater, container, false)
         binding.schoolList.layoutManager = LinearLayoutManager(context)
 
-        showProgressBar(binding.root)
-        var schoolList = mViewModel.getSchoolList()
-        schoolList.observe(this, schoolListObserver)
-
-        if (schoolList.value != null) {
-            binding.schoolList.adapter = MySchoolAdapter(schoolList.value!!) { id: String? ->
-                navigateToScores(
-                    id!!
-                )
-            }
-            hideProgressBar(binding.root)
-        }
+        mViewModel.getSchoolList().observe(this, schoolListObserver)
         return binding.root
     }
 
@@ -64,20 +54,28 @@ class SchoolFragment : BaseFragment() {
             .navigate(com.mandarjoshi.nycschools.R.id.navigate_to_school_scores, bundle)
     }
 
-    private val schoolListObserver: Observer<List<SchoolDetails>?> =
-        Observer<List<SchoolDetails>?> { list ->
-            when {
-                list == null -> {
+    private val schoolListObserver: Observer<Resource<List<SchoolDetails>?>> =
+        Observer<Resource<List<SchoolDetails>?>> { list ->
+            when(list.status) {
+                Status.ERROR -> {
+                    hideProgressBar(binding.root)
                     DialogUtil.getSimpleErrorDialog(requireActivity()).show()
                 }
-                list.isEmpty() -> {
-                    DialogUtil.getNoDataDialog(requireActivity()).show()
+                Status.SUCCESS -> {
+                    hideProgressBar(binding.root)
+                    mViewModel.refreshSchoolList(list)
+                    list.data?.let {
+                        if(it.isEmpty()){
+                            DialogUtil.getNoDataDialog(requireActivity()).show()
+                        } else {
+                            binding.schoolList.adapter =
+                                MySchoolAdapter(list.data) { id -> navigateToScores(id) }
+                        }
+                    }
+
                 }
-                else -> {
-                    binding.schoolList.adapter = MySchoolAdapter(list){ id -> navigateToScores(id) }
-                }
+                else -> showProgressBar(binding.root)
             }
-            view?.let { hideProgressBar(it) }
         }
 
 }

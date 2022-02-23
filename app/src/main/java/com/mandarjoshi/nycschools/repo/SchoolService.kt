@@ -10,8 +10,8 @@ import retrofit2.Call
 
 interface SchoolService {
     @GET("resource/f9bf-2cp4.json")
-    fun getSchoolScores(): Call<List<SchoolScore>>
+    suspend fun getSchoolScores(): List<SchoolScore>?
 
     @GET("resource/s3k6-pzi2.json")
-    fun getSchoolList(): Call<List<SchoolDetails>>
+    suspend fun getSchoolList(): List<SchoolDetails>?
 }
